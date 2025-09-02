@@ -14,7 +14,6 @@ export default function LoginPage() {
   const [successMsg, setSuccessMsg] = useState("");
   const router = useRouter();
 
-  // Step 1: Submit username
   const handleUsernameSubmit = async () => {
     if (!username) {
       setError("⚠️ Username is required");
@@ -29,10 +28,8 @@ export default function LoginPage() {
     setStep(2);
   };
 
-  // Step 2: Move to password input
   const handleNext = () => setStep(3);
 
-  // Step 3: Submit password
   const handleLogin = async () => {
     if (!password) {
       setError("⚠️ Password is required");
@@ -50,10 +47,10 @@ export default function LoginPage() {
 
     const data = await res.json();
     if (data.success) {
-      setSuccessMsg("✅ Login successful! Redirecting...");
+      setSuccessMsg("Login successful! Redirecting...");
       setTimeout(() => router.push("/dashboard"), 1500);
     } else {
-      setError("❌ Login failed");
+      setError("Login failed");
     }
   };
 
@@ -64,7 +61,7 @@ export default function LoginPage() {
           Login
         </h1>
 
-        {/* Step 1: Username */}
+        {/* Show Username */}
         {step === 1 && (
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -86,7 +83,7 @@ export default function LoginPage() {
           </div>
         )}
 
-        {/* Step 2: Secure Word */}
+        {/* Show Secure Word */}
         {step === 2 && (
           <div className="text-center">
             <div className="mb-6 flex justify-center">
@@ -97,7 +94,7 @@ export default function LoginPage() {
             />
           </div>
             <p className="mb-4 text-gray-700">
-              🔐 Secure Word:{" "}
+              Secure Word:{" "}
               <span className="font-semibold text-blue-600">{secureWord}</span>
             </p>
             <button
@@ -109,7 +106,7 @@ export default function LoginPage() {
           </div>
         )}
 
-        {/* Step 3: Password */}
+        {/* Show Password */}
         {step === 3 && (
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
